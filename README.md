@@ -63,44 +63,4 @@
 
 后端使用了php的yii2框架，托管在阿里云虚拟主机上
 
-#### 数据库表
 
-#### 活动表activity
-
-![](https://cl.ly/3b0c0l463Z17/download/Image%202018-06-05%20at%2000.53.49.png)
-
-#### 招新资料表enroll
-
-![](https://cl.ly/2e1Y2J223d1F/download/Image%202018-06-05%20at%2000.57.19.png)
-
-#### 会员表member
-
-![](https://cl.ly/2z3l160X0Z3c/download/Image%202018-06-05%20at%2000.58.45.png)
-
-#### 充值表recharge
-
-![](https://cl.ly/3a2j1p3o0N2i/download/Image%202018-06-05%20at%2001.00.54.png)
-
-#### 特色活动报名表special
-
-![](https://cl.ly/2J3G0p2C0o2L/download/Image%202018-06-05%20at%2001.02.30.png)
-
-#### 特色活动信息表feature
-
-![](https://cl.ly/3O1C1I1E2p3K/download/Image%202018-06-05%20at%2001.03.30.png)
-
-#### 调查问卷表survey
-
-![](https://cl.ly/1J3e2B2u0D0n/download/Image%202018-06-05%20at%2001.04.23.png)
-
-### 团队组成与分工
-
-#### 组成
-
-- 队长 同济大学 机械与能源工程学院 范斌
-- 队员 同济大学 软件学院 李婧
-- 队员 同济大学 电子与信息工程学院 黄键坤
-
-#### 分工
-
-项目主要工作有： UI设计，开发，测试，文档，工作量均平均分配
