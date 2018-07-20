@@ -1,0 +1,35 @@
+page{
+  background: #efefef;
+}
+.act_info{
+  font-size: 80%;
+  color: #666;
+  margin-left: 40rpx;
+}
+.record{
+  background: #fff;
+  height: 100rpx;
+  border-bottom: 1px solid #eee;
+  position: relative
+}
+.time{
+  position: absolute;
+  top: 30rpx;
+  left: 40rpx;
+  font-size: 80%;
+  color: #666;
+}
+.type{
+  position: absolute;
+  top: 30rpx;
+  right: 150rpx;
+  font-size: 80%;
+  color: #666;
+}
+.number{
+  position: absolute;
+  top: 30rpx;
+  right: 40rpx;
+  font-size: 80%;
+  color: #ff6100;
+}

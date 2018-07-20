@@ -1,0 +1,26 @@
+<view class="feature">
+  <view class="contain">
+    <view class="description">
+      <view class="title flex-wrap">
+        <view class="date">
+          <text>{{name}}</text>
+        </view>
+        <view class="state">
+          <text class="type">{{finish}}</text>
+        </view>
+      </view>
+      <view class="time">
+        <text>{{feature_date}} 18:00-20:30</text>
+      </view>
+      <view class="sign_time">
+        <text>{{detail}}</text>
+      </view>
+      <view class="sign_time">
+        <text>详情链接{{url}}</text>
+      </view>
+    </view>
+    <view class="signup">
+      <button class="sign_up" bindtap="pressSign">报名</button>
+    </view>
+  </view>
+</view>

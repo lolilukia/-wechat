@@ -1,0 +1,40 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/info/info",
+    "pages/act_record/act_record",
+    "pages/pay_record/pay_record",
+    "pages/recharge/recharge",
+    "pages/daily/daily",
+    "pages/survey/survey",
+    "pages/feature/feature",
+    "pages/form/form",
+    "pages/detail/detail"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#bcbcbc",
+    "selectedColor": "#ff6100",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "活动",
+        "iconPath": "images/badminton.png",
+        "selectedIconPath": "images/badminton_f.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_f.png"
+      }
+    ]
+  }
+}

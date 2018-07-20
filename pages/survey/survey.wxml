@@ -1,0 +1,52 @@
+<view class="surveyView">
+<text class="surveyTitle">调查问卷</text>
+  <view class="section">
+    <label class="label">您的球龄：</label>
+  </view>
+  <view class="section">
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio elements" wx:for="{{yearsexp}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+      </label>
+    </radio-group>
+  </view>
+  <view class="section">
+    <label class="label">您加入羽协是为了（多选）：</label>
+  </view>
+  <view class="section">
+    <checkbox-group bindchange="checkboxChange">
+      <label class="checkbox elements" wx:for="{{purpose}}">
+        <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+      </label>
+    </checkbox-group>
+  </view>
+  <view class="section">
+    <label class="label">您是否愿意成为羽协干事：</label>
+  </view>
+  <view class="section">
+    <radio-group class="radio-group" bindchange="willChange">
+      <label class="radio elements" wx:for="{{willing}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+      </label>
+    </radio-group>
+  </view>
+  <view class="section">
+    <label class="label">您希望教学场：</label>
+  </view>
+  <view class="section">
+    <radio-group class="radio-group" bindchange="hopeChange">
+      <label class="radio elements" wx:for="{{hope}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+      </label>
+    </radio-group>
+  </view>
+  <view class="section">
+    <label class="label">您对活动场的建议：</label>
+  </view>
+  <view class="section">
+    <textarea bindinput="bindInput" class="area" placeholder="在此输入您的建议" placeholder-style="color:grey;"/>
+  </view>
+  <view class="section">
+    <button class="submitBind" bindtap="submitBind">提交</button>
+  </view>
+</view>

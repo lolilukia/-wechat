@@ -1,0 +1,34 @@
+page{
+  background: #efefef;
+}
+.info{
+  padding-top: 30rpx;
+}
+.flex-wrp {
+  display: flex;
+  flex-direction:row;
+  flex-wrap: nowrap;
+}
+.edit{
+  padding: 0 60rpx;
+  height: 100rpx;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+.label{
+  width: 35%;
+}
+.btn_group{
+  margin-top: 40rpx;
+}
+.cancel{
+  background-color: #ff0000;
+  color: #fff;
+  width: 250rpx;
+}
+.save{
+  background-color: #62b900;
+  color: #fff;
+  width: 250rpx;
+}

@@ -1,0 +1,29 @@
+<view class="bindView">
+  <view class="section">
+    <label>姓名(必填)：</label>
+    <input name="realName" bindinput="inputName" class="inputStyle" placeholder=""/>
+  </view>
+  <view class="section">
+    <label>学院(必填)：</label>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">{{array[index]}}</view>
+  </picker>
+  </view>
+  <view class="section">
+    <label>手机(必填)：</label>
+    <input name="stuNumber" bindinput="inputPhone" class="inputStyle" placeholder=""/>
+  </view>
+  <view class="section">
+    <label>队友姓名(选填)：</label>
+    <input name="mateName" bindinput="mateName" class="inputStyle" placeholder=""/>
+  </view>
+  <view class="section">
+    <label>队友学院(选填)：</label>
+    <picker bindchange="bindMateChange" value="{{mate_index}}" range="{{array}}">
+    <view class="picker">{{array[mate_index]}}</view>
+  </picker>
+  </view>
+  <view class="section">
+    <button class="submitBind" bindtap="submitBind">提交</button>
+  </view>
+</view>

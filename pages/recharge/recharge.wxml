@@ -1,0 +1,12 @@
+<view class="rechargeView">
+  <view class="intro">
+    <text class="reText">{{rechargeText}}</text>
+  </view>
+  <view class="QRcode">
+    <image bindtap="saveAli" class="qrcode" src="../../images/alipay.jpg" mode="aspectFit"></image>
+    <image bindtap="saveWechat" class="qrcode" src="../../images/wechat.jpg" mode="aspectFit"></image>
+  </view>
+  <view class="backbtn">
+    <button class="backBtn" bindtap="jumpBack">{{btnText}}</button>
+  </view>
+</view>

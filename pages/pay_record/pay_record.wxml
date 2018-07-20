@@ -1,0 +1,8 @@
+<view class="pay_record">
+  <text class="pay_info">{{pay_info}}</text>
+  <view class="record" wx:for="{{records}}" wx:key="time" wx:for-item="item">
+    <text class="time">{{item.time}}</text>
+    <text class="type">金额:{{item.amount}}</text>
+    <text class="number">计{{item.number}}次</text>
+  </view>
+</view>

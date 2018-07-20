@@ -1,0 +1,32 @@
+<view class="daily">
+  <view class="contain">
+    <view class="description">
+      <image src="../../images/daily.png" class="daily_img"></image>
+      <view class="time">
+        <text>{{daily_date}} 18:00-20:30</text>
+        <text class="type">{{daily_type}}</text>
+      </view>
+      <view class="sign_time">
+        <text>{{sign_time}} 开始报名</text>
+      </view>
+    </view>
+    <view class="signup">
+      <button class="sign_up" wx:if="{{!signup}}" bindtap="pressSign">报名</button>
+      <block wx:else>
+      <view class="is_sign">
+        <view class="sign_order">
+          <text>排在第{{order}}位</text>
+        </view>
+        <view class="flex-wrp">
+          <button class="cancel" bindtap="pressCancel">退报名</button>
+        </view>
+      </view>
+      </block>
+      <view class="flex-wrp view_con">
+        <text class="sign_info">{{total}}人已报名</text>
+      </view>
+      <button class="sign_btn" bindtap="pressDetail">报名详情</button>
+      <button wx:if="{{coach}}" class="coach_btn" bindtap="pressCoach">教练签到</button>
+    </view>
+  </view>
+</view>

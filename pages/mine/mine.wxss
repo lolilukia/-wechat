@@ -1,0 +1,86 @@
+page{
+  background: #efefef;
+}
+.mine{
+  padding-top: 30rpx;
+}
+.flex-wrp {
+  display: flex;
+  flex-direction:row;
+  flex-wrap: nowrap;
+}
+.userinfo{
+  height: 200rpx;
+  width: 100%;
+  padding: 0 40rpx;
+  background: #fff;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.getinfo{
+  font-size: 40rpx;
+}
+.avatar {
+  width: 128rpx;
+  height: 128rpx;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.nick{
+  width: 50%;
+}
+.nickname{
+  align-items: center;
+  margin: 0 20rpx;
+}
+.rest_time{
+  padding: 0 40rpx;
+  position: relative;
+  background: #fff;
+  height: 100rpx;
+  align-items: center;
+  border-bottom: 1px #eee solid;
+}
+.rest_time_icon{
+  width: 60rpx;
+  height: 60rpx;
+}
+.info{
+  font-size: 80%;
+  color: #666;
+}
+.arrow{
+  width: 45rpx;
+  height: 45rpx;
+  position: absolute;
+  right: 50rpx;
+  top: 115rpx;
+}
+.list_text{
+  margin-left: 30rpx;
+  color: #666;
+  width: 60%;
+}
+.arrow_list{
+  width: 45rpx;
+  height: 45rpx;
+  position: absolute;
+  right: 50rpx;
+  top: 27.5rpx;
+}
+.rest_text{
+  color: #666;
+  position: absolute;
+  right: 100rpx;
+  top: 27.5rpx;
+}
+.rest_time_space{
+  margin-top: 30rpx;
+  padding: 0 40rpx;
+  position: relative;
+  background: #fff;
+  height: 100rpx;
+  align-items: center;
+  border-bottom: 1px #eee solid;
+}

@@ -1,0 +1,89 @@
+page{
+  background-color: #efefef;
+}
+.description{
+  width: 100%;
+  background-color: #fff;
+}
+.daily_img{
+  width: 100%;
+  height: 450rpx;
+}
+.type{
+  color: #ff6100;
+  margin-left: 50rpx;
+}
+.time{
+  padding: 10rpx 0rpx 5rpx 20rpx;
+  color: #666;
+  font-size: 80%;
+}
+.signup{
+  margin-top: 30rpx;
+  background-color: #fff;
+  padding: 50rpx;
+  justify-content: center;
+}
+.sign_up{
+  margin-top: 30rpx;
+  background-color: #ff6100;
+  color: #fff;
+  width: 200rpx;
+  height: 200rpx;
+  padding: 50rpx;
+  border-radius: 100rpx;
+}
+.sign_order{
+  display: flex;
+  justify-content: center;
+  color: #666;
+  font-size: 90%;
+}
+.sign_time{
+  padding: 5rpx 0rpx 10rpx 20rpx;
+  color: #666;
+  font-size: 80%;
+}
+.flex-wrp {
+  display: flex;
+  flex-direction:row;
+  flex-wrap: nowrap;
+}
+.view{
+  width: 50rpx;
+  height: 50rpx;
+}
+.view_con{
+  margin-top: 30rpx;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.sign_peo, .pack_up{
+  margin-left: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.cancel{
+  margin-top: 30rpx;
+  background-color: #666;
+  color: #fff;
+  width: 200rpx;
+  height: 200rpx;
+  padding: 50rpx 30rpx;
+  border-radius: 100rpx;
+}
+.sign_btn{
+  margin-top: 30rpx;
+  background-color: #ff6100;
+  border: none;
+  width: 80%;
+  color: #fff;
+}
+.coach_btn{
+  margin-top: 30rpx;
+  background-color: #68d851;
+  border: none;
+  width: 80%;
+  color: #fff;
+}

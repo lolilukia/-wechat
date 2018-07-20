@@ -1,0 +1,43 @@
+<view class="info">
+  <view class="flex-wrp edit">
+    <text class="label">真实姓名</text>
+    <input bindinput="inputName" placeholder="真实姓名" value="{{realname}}"/>
+  </view>
+  <view class="flex-wrp edit">
+    <text class="label">学号</text>
+    <input type="number" bindinput="inputNumber" placeholder="学号" value="{{stunum}}"/>
+  </view>
+  <view class="flex-wrp edit">
+    <text class="label">手机号码</text>
+    <input type="number" bindinput="inputPhone" placeholder="手机号码" value="{{phoneNum}}"/>
+  </view>
+  <view class="flex-wrp edit">
+    <text class="label">学院</text>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">{{array[index]}}</view>
+    </picker>
+  </view>
+  <view class="flex-wrp edit">
+    <text class="label">角色</text>
+    <input disabled="true" value="{{role}}"/>
+  </view>
+  <view class="flex-wrp edit">
+    <text class="label">成为干事？</text>
+    <picker bindchange="pickerChange" value="{{item}}" range="{{elements}}">
+      <view class="picker">{{elements[item]}}</view>
+    </picker>
+  </view>
+  <view class="flex-wrp btn_group">
+    <button class="cancel" bindtap="listenerButton">取消</button>
+    <button class="save" bindtap="submit">保存</button>
+  </view>
+  <modal 
+     title="取消编辑"
+     hidden="{{hiddenModal}}"
+     confirm-text="确定"
+     cancel-text="取消"
+     bindconfirm="jumpCancel"
+     bindcancel="listenerCancel" >
+     是否退出编辑？
+  </modal>
+</view>

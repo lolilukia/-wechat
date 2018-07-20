@@ -1,0 +1,54 @@
+/**index.wxss**/  
+.swiper-tab{  
+    width: 100%;  
+    border-bottom: 2rpx solid transparent;  
+    text-align: center;  
+    line-height: 80rpx;
+}  
+.swiper-tab-list{  
+    font-size: 30rpx;  
+    display: inline-block;  
+    width: 33.33%;  
+    color: #666;  
+}  
+.on{ 
+    color: #ff6100;  
+    border-bottom: 5rpx solid #ff6100;
+}   
+.swiper-box{ 
+  display: block; 
+  height: 100%; 
+  width: 100%; 
+  overflow: hidden; 
+}  
+.swiper-box view{  
+  text-align: left;  
+}
+.daily_act{
+  margin-top: 20rpx;
+  width: 100%;
+  height: 530rpx;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+.daily_date{
+  font-size: 80%;
+  color: #666;
+  margin-left: 30rpx;
+}
+.daily_type{
+  font-size: 80%;
+  color: #666;
+  margin-left: 30rpx;
+}
+.daily_img{
+  width: 100%;
+  height: 450rpx;
+}
+.arrow{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  bottom: 20rpx;
+  right: 30rpx;
+}

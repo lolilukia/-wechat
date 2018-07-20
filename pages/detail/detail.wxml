@@ -1,0 +1,13 @@
+<view class="container">
+    <view class="table">
+        <view class="tr">
+          <view class="th num">序号</view>
+          <view class="th name">姓名</view>
+        </view>
+        <view class="tr" wx:for="{{names.data}}" wx:key="{{names.data}}" 
+        wx:for-item="item">
+          <view class="td num">{{item.num}}</view>
+          <view class="td name">{{item.name}}</view>
+        </view>
+    </view>
+</view>
