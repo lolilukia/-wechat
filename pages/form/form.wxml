@@ -14,6 +14,14 @@
     <input name="stuNumber" bindinput="inputPhone" class="inputStyle" placeholder=""/>
   </view>
   <view class="section">
+    <label>性别</label>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio elements" wx:for="{{project}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+      </label>
+    </radio-group>
+  </view>
+  <view class="section">
     <label>队友姓名(选填)：</label>
     <input name="mateName" bindinput="mateName" class="inputStyle" placeholder=""/>
   </view>

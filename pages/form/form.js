@@ -10,6 +10,11 @@ Page({
     college: '汽车学院',
     matecollege: '',
     phoneNum: '',
+    subject: '',
+    project: [
+      { name: 0, value: '男' },
+      { name: 1, value: '女' },
+    ],
     array: ['汽车学院', '铁道与城市轨道交通研究院', '经济与管理学院', '交通运输工程学院', '中德学院', '机械工程学院', '电子与信息工程学院', '软件学院', '材料科学与工程学院', '艺术与传媒学院', '中德工程学院'],
     objectArray: [
       {
@@ -75,6 +80,7 @@ Page({
   },
   onLoad: function(options) {
     var that = this;
+    console.log(options.actid);
     that.setData({
       actid: options.actid
     })
@@ -89,6 +95,11 @@ Page({
     this.setData({
       mate_index: e.detail.value,
       mate_college: this.data.array[e.detail.value]
+    })
+  },
+  radioChange: function (e) {
+    this.setData({
+      subject: e.detail.value
     })
   },
   submitBind: function (e) {
@@ -132,7 +143,8 @@ Page({
         college: that.data.college,
         phone: that.data.phoneNum,
         mate_name: that.data.matename,
-        mate_college: that.data.matecollege
+        mate_college: that.data.matecollege,
+        subject: that.data.subject
       },
       success: function (result) {
         if(result.data.state.indexOf('success') != -1){

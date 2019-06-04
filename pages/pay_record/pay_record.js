@@ -23,6 +23,11 @@ Page({
             pay_info: '共充值' + that.data.count + '次'
           });
         }
+        else{
+          that.setData({
+            pay_info: '本学期尚无充值记录'
+          });
+        }
       }
     });
   }

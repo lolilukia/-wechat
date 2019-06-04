@@ -55,7 +55,7 @@ Page({
     }
     else{
       wx.navigateTo({
-        url: '../form/form?actid=' + that.data.act_id,
+        url: '../form/form?actid=' + that.data.actid,
       })
     }
   }

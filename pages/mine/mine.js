@@ -1,37 +1,11 @@
 const app = getApp()
 Page({
   data: {
-    userInfo: {},
-    hasUserInfo: false,
     mine_info: '个人资料',
     rest_text: '',
     stunum: '',
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
     var that = this;
     wx.getStorage({
       key: 'stuNum',
@@ -108,13 +82,22 @@ Page({
         }
       });
     }
-  },
-  getUserInfo: function (e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    else{
+      wx.request({
+        url: 'https://www.jdyx.club/tjyx_backend/web/index.php?r=info/time&stunum=' + that.data.stunum,
+        method: 'GET',
+        success: function (result) {
+          if (result.data.state.indexOf('success') != -1) {
+            that.setData({
+              rest_text: result.data.rest_time,
+            });
+          }
+          else {
+            console.log(result.data.state);
+          }
+        }
+      })
+    }
   },
   modifyInfo: function (e) {
     var that = this;

@@ -91,9 +91,6 @@ Page({
             acts: result.data.activity
           });
         }
-        else {
-          console.log(result.data);
-        }
       }
     });
   },
@@ -121,13 +118,31 @@ Page({
   },
   getDaily: function (){
     var that = this;
-    wx.navigateTo({
-      url: '../daily/daily?stunum=' + that.data.stunum,
+    wx.getStorage({
+      key: 'stuNum',
+      success: function (res) {
+        that.setData({
+          stunum: res.data
+        });
+        wx.navigateTo({
+          url: '../daily/daily?stunum=' + that.data.stunum,
+        });
+      }
     });
   },
   getFeature: function (e){
-    wx.navigateTo({
-      url: '../feature/feature?act_id=' + e.currentTarget.dataset.id,
-    });
+    var that = this;
+    if (that.data.acts[e.currentTarget.dataset.id - 1].detail == null) {
+      wx.showToast({
+        title: '报名尚未开始',
+        icon: 'loading',
+        duration: 1000
+      })
+    }
+    else {
+      wx.navigateTo({
+        url: '../feature/feature?act_id=' + e.currentTarget.dataset.id,
+      });
+    }
   }
 }) 

@@ -32,3 +32,6 @@ label{
   margin-top: 40px;
   width: 100%;
 }
+.elements{
+  display: flex;
+}

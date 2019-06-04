@@ -157,7 +157,7 @@ Page({
       var today = date.getDay();
       var hours = date.getHours();
       var mins = date.getMinutes();
-      if (today < 1 || today > 4 || (today == 1 && hours < 17) || (today == 3 && hours < 17) || (today == 2 && hours > 18) || (today == 4 && hours > 18)) {
+      if (today < 1 || today > 4 || (today == 1 && hours < 17) || (today == 3 && hours < 17) || (today == 2 && hours > 20) || (today == 4 && hours > 20)) {
         wx.showModal({
           title: '提示',
           content: '未到活动报名时间',
@@ -216,10 +216,10 @@ Page({
     var date = new Date();
     var day = date.getDay();
     var hour = date.getHours();
-    if((day == 2 || day == 4) && hour >= 17){
+    if((day == 2 || day == 4) && hour >= 18){
       wx.showModal({
         title: '提示',
-        content: '请在当天五点之前退报名',
+        content: '请在当天六点之前退报名',
         success: function (res) {
           console.log('cancel error');
         }

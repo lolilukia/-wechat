@@ -86,17 +86,8 @@ Page({
               index: that.data.array.indexOf(result.data.college),
               phoneNum: result.data.phone,
               item: result.data.willing,
+              role: result.data.coach == 0? '会员':'教练'
             });
-            if(result.data.coach == 0){
-              that.setData({
-                role: '会员'
-              });
-            }
-            else{
-              that.setData({
-                role: '教练'
-              })
-            }
           }
         }
       });

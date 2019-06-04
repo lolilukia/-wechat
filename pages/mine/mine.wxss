@@ -21,8 +21,8 @@ page{
   font-size: 40rpx;
 }
 .avatar {
-  width: 128rpx;
-  height: 128rpx;
+  max-width: 130rpx;
+  max-height: 130rpx;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
