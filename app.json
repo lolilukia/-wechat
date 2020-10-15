@@ -1,26 +1,28 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/mine/mine",
     "pages/info/info",
     "pages/act_record/act_record",
     "pages/pay_record/pay_record",
-    "pages/recharge/recharge",
     "pages/daily/daily",
     "pages/survey/survey",
     "pages/feature/feature",
     "pages/form/form",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/about/about",
+    "pages/logs/logs",
+    "pages/special/special"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#666",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#bcbcbc",
-    "selectedColor": "#ff6100",
+    "selectedColor": "#666",
     "backgroundColor": "#ffffff",
     "list": [
       {
@@ -36,5 +38,6 @@
         "selectedIconPath": "images/user_f.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

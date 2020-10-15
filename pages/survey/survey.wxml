@@ -44,7 +44,7 @@
     <label class="label">您对活动场的建议：</label>
   </view>
   <view class="section">
-    <textarea bindinput="bindInput" class="area" placeholder="在此输入您的建议" placeholder-style="color:grey;"/>
+    <textarea bindinput="bindInput" value="{{text}}" class="area" placeholder="在此输入您的建议（选填）" placeholder-style="color:grey;"/>
   </view>
   <view class="section">
     <button class="submitBind" bindtap="submitBind">提交</button>

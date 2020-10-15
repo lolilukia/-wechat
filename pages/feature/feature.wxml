@@ -1,26 +1,38 @@
 <view class="feature">
   <view class="contain">
-    <view class="description">
-      <view class="title flex-wrap">
-        <view class="date">
-          <text>{{name}}</text>
-        </view>
-        <view class="state">
-          <text class="type">{{finish}}</text>
-        </view>
+    <view class="descrip">
+      <view class="name_con">
+        <text class="title">{{name}}</text>
+        <text class="status">{{finish}}</text>
       </view>
-      <view class="time">
-        <text>{{feature_date}} 18:00-20:30</text>
+      <view class="con">
+        <text class="fea_time">活动时间：{{feature_date}}</text>
       </view>
-      <view class="sign_time">
-        <text>{{detail}}</text>
+      <view class="con">
+        <text class="fea_time">开始报名时间：{{sign_time}}</text>
       </view>
-      <view class="sign_time">
-        <text>详情链接{{url}}</text>
+      <view class="con">
+        <text class="fea_time">活动地点：{{location}}</text>
+      </view>
+      <view class="con">
+        <text class="fea_time" selectable="true" bindlongtap="copy">活动链接：{{url}}</text>
+      </view>
+      <view class="detail_con">
+        <text class="feature_detail">{{detail}}</text>
+      </view>
+      <view class="image_con">
+        <image src="../../images/fun.png" class="gam"
+        bindload="imageLoad" style="width:{{imageWidth}}px;;height:{{imageHeight}}px;"></image>
       </view>
     </view>
-    <view class="signup">
-      <button class="sign_up" bindtap="pressSign">报名</button>
+    <view class="enroll">
+      <button class="sign_btn" wx:if="{{!signup}}" bindtap="pressSign">报名</button>
+      <block wx:else>
+      <button class="signed">已报名</button>
+      </block>
+      <view class="flex-wrp info_con">
+        <text class="feature_info" bindtap="pressInfo">查看报名详情</text>
+      </view>
     </view>
   </view>
 </view>

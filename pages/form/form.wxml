@@ -10,16 +10,16 @@
   </picker>
   </view>
   <view class="section">
-    <label>手机(必填)：</label>
-    <input name="stuNumber" bindinput="inputPhone" class="inputStyle" placeholder=""/>
-  </view>
-  <view class="section">
-    <label>性别</label>
+    <label>性别(必填)：</label>
     <radio-group class="radio-group" bindchange="radioChange">
       <label class="radio elements" wx:for="{{project}}">
         <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
       </label>
     </radio-group>
+  </view>
+  <view class="section">
+    <label>队友学号(选填)：</label>
+    <input name="mateNum" bindinput="mateNum" class="inputStyle" placeholder=""/>
   </view>
   <view class="section">
     <label>队友姓名(选填)：</label>
@@ -30,6 +30,14 @@
     <picker bindchange="bindMateChange" value="{{mate_index}}" range="{{array}}">
     <view class="picker">{{array[mate_index]}}</view>
   </picker>
+  </view>
+  <view class="section">
+    <label>队友性别(选填)：</label>
+    <radio-group class="radio-group" bindchange="mateChange">
+      <label class="radio elements" wx:for="{{mate_proj}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+      </label>
+    </radio-group>
   </view>
   <view class="section">
     <button class="submitBind" bindtap="submitBind">提交</button>

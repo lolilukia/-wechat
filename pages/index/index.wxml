@@ -7,22 +7,33 @@
     <!-- 日常 -->  
     <swiper-item>  
       <view class="daily">
-        <view class="daily_act" bindtap="getDaily">
-          <image src="../../images/daily.png" class="daily_img"></image>
-          <text class="daily_date">{{daily_date}}</text>
-          <text class="daily_type">{{daily_type}}</text>
-          <image src="../../images/arrow.png" class="arrow"></image>
+        <view class="daily_con daily_teach" bindtap="getDaily" data-id="0">
+          <image src="../../images/net.png" class="icon"></image>
+          <text class="daily_date">{{teach_date}}</text>
+          <image src="../../images/time.png" class="time_icon"></image>
+          <text class="sign_time">{{teach_sign_date}}开始报名</text>
+          <text class="daily_type">{{teach_type}}</text>
+          <text class="daily_state teach_state">{{teach_state}}</text>
         </view>
-      </view>  
+        <view class="daily_con daily_act" bindtap="getDaily" data-id="1">
+          <image src="../../images/ball.png" class="icon"></image>
+          <text class="daily_date">{{act_date}}</text>
+          <image src="../../images/time.png" class="time_icon"></image>
+          <text class="sign_time">{{act_sign_date}}开始报名</text>
+          <text class="daily_type">{{act_type}}</text>
+          <text class="daily_state act_state">{{act_state}}</text>
+        </view>
+      </view>
     </swiper-item>  
     <!-- 特色 -->  
     <swiper-item>  
       <view class="daily">
-        <view class="daily_act" wx:for="{{acts}}" wx:for-index="index" wx:for-item="item" wx:key="{{act_name}}" data-id="{{item.act_id}} "bindtap="getFeature">
-          <image src="{{imgUrl[index]}}" class="daily_img"></image>
+        <view class="daily_con feature" wx:for="{{acts}}" wx:for-index="index" wx:for-item="item" wx:key="{{act_name}}" data-id="{{item.act_id}} "bindtap="getFeature">
           <text class="daily_date">{{item.act_time}}</text>
+          <image src="../../images/time.png" class="time_icon"></image>
+          <text class="sign_time">{{item.sign_time}}开始报名</text>
           <text class="daily_type">{{item.name}}</text>
-          <image src="../../images/arrow.png" class="arrow"></image>
+          <text class="daily_state feature_state">{{item.sign_state}}</text>
         </view>
       </view>   
     </swiper-item>

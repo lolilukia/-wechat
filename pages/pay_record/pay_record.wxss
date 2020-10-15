@@ -2,13 +2,14 @@ page{
   background: #efefef;
 }
 .pay_info{
-  font-size: 80%;
+  font-size: 25rpx;
   color: #666;
-  margin-left: 40rpx;
+  margin: 20rpx 40rpx;
 }
 .record{
   background: #fff;
   height: 100rpx;
+  border-left: 4px solid #666;
   border-bottom: 1px solid #eee;
   position: relative
 }
@@ -16,20 +17,20 @@ page{
   position: absolute;
   top: 30rpx;
   left: 40rpx;
-  font-size: 80%;
+  font-size: 30rpx;
   color: #666;
 }
 .type{
   position: absolute;
   top: 30rpx;
   right: 150rpx;
-  font-size: 80%;
+  font-size: 30rpx;
   color: #666;
 }
 .number{
   position: absolute;
   top: 30rpx;
   right: 40rpx;
-  font-size: 80%;
+  font-size: 30rpx;
   color: #ff6100;
 }

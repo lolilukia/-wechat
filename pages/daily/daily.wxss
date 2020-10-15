@@ -2,27 +2,41 @@ page{
   background-color: #efefef;
 }
 .description{
-  width: 100%;
+  width: 94%;
+  margin: 30rpx 3% 30rpx 3%;
+  height: 600rpx;
+  border-radius: 20rpx;
   background-color: #fff;
-}
-.daily_img{
-  width: 100%;
-  height: 450rpx;
+  border-top: #666 solid 6rpx;
 }
 .type{
-  color: #ff6100;
-  margin-left: 50rpx;
+  font-size: 40rpx;
+}
+.type_con{
+  padding: 20rpx 0rpx 10rpx 30rpx;
+  color: #666;
 }
 .time{
-  padding: 10rpx 0rpx 5rpx 20rpx;
-  color: #666;
-  font-size: 80%;
+  padding: 5rpx 0rpx 5rpx 30rpx;
+  color: #999;
+  font-size: 30rpx;
+}
+.img_con{
+  margin: 5rpx 30rpx 5rpx 30rpx;
+  height: 300rpx;
+  overflow: hidden;
+}
+.gam{
+  width: 100%;
 }
 .signup{
-  margin-top: 30rpx;
+  width: 94%;
+  margin: 25rpx 3% 35rpx 3%;
   background-color: #fff;
-  padding: 50rpx;
+  border-radius: 20rpx;
   justify-content: center;
+  padding: 20rpx 0rpx 20rpx 0rpx;
+  border-bottom: #666 solid 6rpx;
 }
 .sign_up{
   margin-top: 30rpx;
@@ -30,7 +44,8 @@ page{
   color: #fff;
   width: 200rpx;
   height: 200rpx;
-  padding: 50rpx;
+  line-height: 200rpx;
+  text-align: center;
   border-radius: 100rpx;
 }
 .sign_order{
@@ -70,7 +85,8 @@ page{
   color: #fff;
   width: 200rpx;
   height: 200rpx;
-  padding: 50rpx 30rpx;
+  line-height: 200rpx;
+  text-align: center;
   border-radius: 100rpx;
 }
 .sign_btn{
@@ -80,10 +96,8 @@ page{
   width: 80%;
   color: #fff;
 }
-.coach_btn{
-  margin-top: 30rpx;
-  background-color: #68d851;
-  border: none;
-  width: 80%;
-  color: #fff;
+.detail_info{
+  margin-left: 20rpx;
+  text-decoration-line: underline;
+  color: #666;
 }

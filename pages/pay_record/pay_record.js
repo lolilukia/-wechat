@@ -1,3 +1,4 @@
+const config = require('../../utils/config.js');
 Page({
   data: {
     stunum: '',
@@ -11,7 +12,7 @@ Page({
       stunum: options.stunum
     });
     wx.request({
-      url: 'https://www.jdyx.club/tjyx_backend/web/index.php?r=recharge/find&stunum=' + that.data.stunum,
+      url: config.api_url + '?r=recharge/find&stunum=' + that.data.stunum,
       method: 'GET',
       success: function (result) {
         that.setData({

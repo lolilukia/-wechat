@@ -1,10 +1,17 @@
 //index.js  
-const util = require('../../utils/util.js') 
+const util = require('../../utils/util.js');
+const config = require('../../utils/config.js'); 
 var app = getApp()
 Page({
   data: {
-    daily_date: '',
-    daily_type: '',
+    teach_type: config.teach_name,
+    act_type: config.act_name,
+    teach_date: '',
+    act_date: '',
+    teach_sign_date: '',
+    act_sign_date: '',
+    teach_state: config.no_sign,
+    act_state: config.no_sign,
     winWidth: 0,
     winHeight: 0,
     // tab切换  
@@ -17,52 +24,62 @@ Page({
     var that = this;
     var date = new Date(new Date(new Date().toLocaleDateString()).getTime());
     var weekday = date.getDay();
-    if(weekday == 2 || weekday == 4){
+    var teach_start = config.teach_sign_time.slice(0, 5);
+    var act_start = config.act_sign_time.slice(0, 5);
+    if(weekday == config.teach_weekday){
       that.setData({
-        daily_date: util.formatDate(date)
-      });
-      if(weekday == 2){
-        that.setData({
-          daily_type: '教学场'
-        });
-      }
-      else{
-        that.setData({
-          daily_type: '自由活动场'
-        });
-      }
-    }
-    else if(weekday == 1 || weekday == 3){
-      that.setData({
-        daily_date: util.formatDate(new Date(date.getTime() + 24 * 60 * 60 * 1000))
-      });
-      if (weekday == 1) {
-        that.setData({
-          daily_type: '教学场'
-        });
-      }
-      else {
-        that.setData({
-          daily_type: '自由活动场'
-        });
-      }
-    }
-    else if(weekday == 0){
-      that.setData({
-        daily_date: util.formatDate(new Date(date.getTime() + 48 * 60 * 60 * 1000)),
-        daily_type: '教学场'
+        teach_date: util.formatDate(date)
+        + ' ' + config.teach_time,
+        teach_sign_date: util.formatDate(new Date(
+          date.getTime() - config.day_time)) + ' ' + teach_start
       });
     }
-    else if(weekday == 5){
+    else if(weekday < config.teach_weekday){
       that.setData({
-        daily_date: util.formatDate(new Date(date.getTime() + 96 * 60 * 60 * 1000)),
-        daily_type: '教学场'
+        teach_date: util.formatDate(new Date(date.getTime() + (
+          config.teach_weekday - weekday) * config.day_time))
+          + ' ' + config.teach_time,
+        teach_sign_date: util.formatDate(new Date(
+          date.getTime() + (config.teach_weekday - weekday - 1) 
+          * config.day_time)) + ' ' + teach_start
       });
     }
-    else if(weekday == 6){
+    else{
       that.setData({
-        daily_date: util.formatDate(new Date(date.getTime() + 72 * 60 * 60 * 1000)),
-        daily_type: '教学场'
+        teach_date: util.formatDate(new Date(date.getTime() + (
+          7 - weekday + config.teach_weekday) * config.day_time))
+          + ' ' + config.teach_time,
+        teach_sign_date: util.formatDate(new Date(
+          date.getTime() + (6 - weekday + config.teach_weekday) 
+          * config.day_time)) + ' ' + teach_start
+      });
+    }
+    if(weekday == config.act_weekday){
+      that.setData({
+        act_date: util.formatDate(date)
+        + ' ' + config.act_time,
+        act_sign_date: util.formatDate(new Date(
+          date.getTime() - config.day_time)) + ' ' + act_start
+      });
+    }
+    else if(weekday < config.act_weekday){
+      that.setData({
+        act_date: util.formatDate(new Date(date.getTime() + (
+          config.act_weekday - weekday) * config.day_time))
+          + ' ' + config.act_time,
+        act_sign_date: util.formatDate(new Date(date.getTime() + 
+        (config.act_weekday - weekday - 1) * config.day_time)) 
+        + ' ' + act_start  
+      });
+    }
+    else{
+      that.setData({
+        act_date: util.formatDate(new Date(date.getTime() + (
+          7 - weekday + config.act_weekday) * config.day_time))
+          + ' ' + config.act_time,
+        act_sign_date: util.formatDate(new Date(
+          date.getTime() + (6 - weekday + config.act_weekday) 
+          * config.day_time)) + ' ' + act_start
       });
     }
     wx.getSystemInfo({
@@ -73,24 +90,67 @@ Page({
         });
       }
     });
+  },
+  onShow: function() {
+    var that = this;
     wx.getStorage({
       key: 'stuNum',
       success: function (res) {
         that.setData({
           stunum: res.data
         });
-      }
-    });
-    wx.request({
-      url: 'https://www.jdyx.club/tjyx_backend/web/index.php?r=feature/find',
-      method: 'GET',
-      success: function (result) {
-        if (result.data.state.indexOf('success') != -1) {
-          console.log(result.data);
-          that.setData({
-            acts: result.data.activity
-          });
-        }
+        wx.request({
+          url: config.api_url + '?r=feature/find&stunum=' + that.data.stunum,
+          method: 'GET',
+          success: function (result) {
+            if (result.data.state.indexOf('success') != -1) {
+              //console.log(result.data);
+              that.setData({
+                acts: result.data.activity
+              });
+            }
+          }
+        });
+        wx.request({
+          url: config.api_url + '?r=activity/order&stunum=' 
+          + that.data.stunum + '&type=0',
+          method: 'GET',
+          success: function (result) {
+            //console.log(result.data);
+            if (result.data.state.indexOf('success') != -1) {
+              if (result.data.is_sign == 'false') {
+                that.setData({
+                  teach_state: config.no_sign
+                });
+              }
+              else {
+                that.setData({
+                  teach_state: config.signed
+                });
+              }
+            }
+          }
+        });
+        wx.request({
+          url: config.api_url + '?r=activity/order&stunum=' 
+          + that.data.stunum + '&type=1',
+          method: 'GET',
+          success: function (result) {
+            //console.log(result.data);
+            if (result.data.state.indexOf('success') != -1) {
+              if (result.data.is_sign == 'false') {
+                that.setData({
+                  act_state: config.no_sign
+                });
+              }
+              else {
+                that.setData({
+                  act_state: config.signed
+                });
+              }
+            }
+          }
+        });
       }
     });
   },
@@ -116,8 +176,10 @@ Page({
       }
     }
   },
-  getDaily: function (){
+  getDaily: function (index){
     var that = this;
+    var dataset = index.currentTarget.dataset;
+    var id = dataset.id;
     wx.getStorage({
       key: 'stuNum',
       success: function (res) {
@@ -125,7 +187,8 @@ Page({
           stunum: res.data
         });
         wx.navigateTo({
-          url: '../daily/daily?stunum=' + that.data.stunum,
+          url: '../daily/daily?stunum=' + that.data.stunum
+          + '&type=' + id,
         });
       }
     });
@@ -141,7 +204,7 @@ Page({
     }
     else {
       wx.navigateTo({
-        url: '../feature/feature?act_id=' + e.currentTarget.dataset.id,
+        url: '../feature/feature?act_id=' + e.currentTarget.dataset.id.trim() + '&stunum=' + that.data.stunum,
       });
     }
   }

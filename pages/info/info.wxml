@@ -7,10 +7,10 @@
     <text class="label">学号</text>
     <input type="number" bindinput="inputNumber" placeholder="学号" value="{{stunum}}"/>
   </view>
-  <view class="flex-wrp edit">
+  <!-- <view class="flex-wrp edit">
     <text class="label">手机号码</text>
     <input type="number" bindinput="inputPhone" placeholder="手机号码" value="{{phoneNum}}"/>
-  </view>
+  </view> -->
   <view class="flex-wrp edit">
     <text class="label">学院</text>
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">

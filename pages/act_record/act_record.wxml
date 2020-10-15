@@ -1,7 +1,7 @@
 <view class="act_record">
   <text class="act_info">{{act_info}}</text>
   <view class="record" wx:for="{{records}}" wx:key="time" wx:for-item="item">
-    <text class="time">{{item.time}}</text>
+    <text class="time">{{item.date}} {{item.time}}</text>
     <text class="type">{{item.weekday}}</text>
     <text class="number">计{{item.number}}次</text>
   </view>

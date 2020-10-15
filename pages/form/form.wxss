@@ -25,6 +25,7 @@ label{
   border-bottom: 1px solid #aaa;
   display: flex;
   width: 50%;
+  text-align: right;
 }
 .submitBind{
   background-color: #62b900;
@@ -33,5 +34,6 @@ label{
   width: 100%;
 }
 .elements{
-  display: flex;
+  display: inline-block;
+  margin-right: 30rpx;
 }

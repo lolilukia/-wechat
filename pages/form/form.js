@@ -1,5 +1,5 @@
 const app = getApp()
-
+const config = require('../../utils/config.js');
 Page({
   data: {
     actid: 0,
@@ -8,10 +8,12 @@ Page({
     stunum: '',
     matenum: '',
     college: '汽车学院',
-    matecollege: '',
-    phoneNum: '',
-    subject: '',
+    matecollege: '汽车学院',
     project: [
+      { name: 0, value: '男' },
+      { name: 1, value: '女' },
+    ],
+    mate_proj: [
       { name: 0, value: '男' },
       { name: 1, value: '女' },
     ],
@@ -64,87 +66,68 @@ Page({
     ],
     index: 0,
     mate_index: 0,
-    elements: ['否', '是'],
-    objectElements: [
-      {
-        id: 0,
-        name: '否'
-      },
-      {
-        id: 1,
-        name: '是'
-      }
-    ],
-    item: 0,
-    mateitem: 0
+    gender: '',
+    mategender: ''
   },
   onLoad: function(options) {
     var that = this;
-    console.log(options.actid);
     that.setData({
-      actid: options.actid
+      actid: options.actid,
+      stunum: options.stunum
     })
   },
   bindPickerChange: function (e) {
-    this.setData({
+    var that = this;
+    that.setData({
       index: e.detail.value,
-      college: this.data.array[e.detail.value]
+      college: that.data.array[e.detail.value]
     })
   },
   bindMateChange: function (e) {
-    this.setData({
+    var that = this;
+    that.setData({
       mate_index: e.detail.value,
-      mate_college: this.data.array[e.detail.value]
+      matecollege: that.data.array[e.detail.value]
     })
   },
   radioChange: function (e) {
-    this.setData({
-      subject: e.detail.value
+    var that = this;
+    that.setData({
+      gender: e.detail.value
+    })
+  },
+  mateChange: function (e) {
+    var that = this;
+    that.setData({
+      mategender: e.detail.value
     })
   },
   submitBind: function (e) {
-    if (this.data.realname == '') {
-      wx.showToast({
-        title: '姓名不能为空',
-        icon: 'loading',
-        duration: 1000
-      })
-      return;
-    }
-    else if (this.data.phoneNum == '') {
-      wx.showToast({
-        title: '手机不能为空',
-        icon: 'loading',
-        duration: 1000
-      })
-      return;
-    }
-    else {
-      var myreg = /^(((13[0-9]{1})|(14[5|7])|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-      if (this.data.phoneNum.length != 11 || !myreg.test(this.data.phoneNum)) {
-        wx.showToast({
-          title: '手机号填写有误',
-          icon: 'loading',
-          duration: 1000
-        })
-        return;
-      }
-    }
     var that = this;
+    if (that.data.realname == '' || that.data.gender == '') {
+      wx.showToast({
+        title: '请填写必填项',
+        icon: 'loading',
+        duration: 1000
+      })
+      return;
+    }
     wx.request({
-      url: 'https://www.jdyx.club/tjyx_backend/web/index.php?r=special/sign',
+      url: config.api_url + '?r=special/sign',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
         act_id: that.data.actid,
+        stunum: that.data.stunum,
         name: that.data.realname,
         college: that.data.college,
-        phone: that.data.phoneNum,
+        gender: that.data.gender,
+        mate_num: that.data.matenum,
         mate_name: that.data.matename,
         mate_college: that.data.matecollege,
-        subject: that.data.subject
+        mate_gender: that.data.mategender
       },
       success: function (result) {
         if(result.data.state.indexOf('success') != -1){
@@ -171,9 +154,9 @@ Page({
       matename: e.detail.value
     });
   },
-  inputPhone: function (e) {
+  mateNum: function (e) {
     this.setData({
-      phoneNum: e.detail.value
+      matenum: e.detail.value
     });
-  }
+  },
 })

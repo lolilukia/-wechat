@@ -1,9 +1,10 @@
+const config = require('../../utils/config.js');
 Page({
   data: {
     realname: '',
     stunum: '',
     college: '汽车学院',
-    phoneNum: '',
+    // phoneNum: '',
     willing: '0',
     role: '',
     hiddenModal: true,
@@ -76,7 +77,7 @@ Page({
     if(that.data.stunum != '')
     {
       wx.request({
-        url: 'https://www.jdyx.club/tjyx_backend/web/index.php?r=bind/query&stunum=' + that.data.stunum,
+        url: config.api_url + '?r=bind/query&stunum=' + that.data.stunum,
         method: 'GET',
         success: function (result) {
           if (result.data.state.indexOf('success') != -1) {
@@ -103,11 +104,11 @@ Page({
       stunum: e.detail.value
     });
   },
-  inputPhone: function (e) {
-    this.setData({
-      phoneNum: e.detail.value
-    });
-  },
+  // inputPhone: function (e) {
+  //   this.setData({
+  //     phoneNum: e.detail.value
+  //   });
+  // },
   bindPickerChange: function (e) {
     this.setData({
       index: e.detail.value,
@@ -136,7 +137,7 @@ Page({
     });
   },
   submit: function (e) {
-    if (this.data.realname == '' || this.data.stunum == '' || this.data.phoneNum == '') {
+    if (this.data.realname == '' || this.data.stunum == '') {
       wx.showToast({
         title: '信息不能为空',
         icon: 'loading',
@@ -144,23 +145,23 @@ Page({
       })
       return;
     }
-    else {
-      var myreg = /^(((13[0-9]{1})|(14[5|7])|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-      if (this.data.phoneNum.length != 11 || !myreg.test(this.data.phoneNum)) {
-        wx.showToast({
-          title: '手机号填写有误',
-          icon: 'loading',
-          duration: 1000
-        })
-        return;
-      }
-    }
+    // else {
+    //   var myreg = /^(((13[0-9]{1})|(14[5|7])|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    //   if (this.data.phoneNum.length != 11 || !myreg.test(this.data.phoneNum)) {
+    //     wx.showToast({
+    //       title: '手机号填写有误',
+    //       icon: 'loading',
+    //       duration: 1000
+    //     })
+    //     return;
+    //   }
+    // }
     var that = this;
     wx.login({
       success: function (res) {
         if (res.code) {
           wx.request({
-            url: 'https://www.jdyx.club/tjyx_backend/web/index.php?r=bind/update',
+            url: config.api_url + '?r=bind/update',
             method: 'POST',
             header: {
               'content-type': 'application/x-www-form-urlencoded'
@@ -169,7 +170,7 @@ Page({
               realname: that.data.realname,
               stunum: that.data.stunum,
               college: that.data.college,
-              phoneNum: that.data.phoneNum,
+              phoneNum: '',
               willing: that.data.willing
             },
             success: function (result) {

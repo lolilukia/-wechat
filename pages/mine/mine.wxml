@@ -15,7 +15,7 @@
   </view>
   <view class="flex-wrp rest_time" bindtap="recharge">
     <image src="../../images/rest_time.png" class="rest_time_icon"></image>
-    <text class="list_text">剩余次数（充值）</text>
+    <text class="list_text">剩余次数</text>
     <text class="rest_text">{{rest_text}}</text>
     <image src="../../images/arrow.png" class="arrow_list"></image>
   </view>
@@ -32,6 +32,11 @@
   <view class="flex-wrp rest_time_space" bindtap="survey">
     <image src="../../images/survey.png" class="rest_time_icon"></image>
     <text class="list_text">调查问卷</text>
+    <image src="../../images/arrow.png" class="arrow_list"></image>
+  </view>
+  <view class="flex-wrp rest_time" bindtap="about">
+    <image src="../../images/about.png" class="rest_time_icon"></image>
+    <text class="list_text">关于我们</text>
     <image src="../../images/arrow.png" class="arrow_list"></image>
   </view>
 </view>

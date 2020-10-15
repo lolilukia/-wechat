@@ -1,9 +1,13 @@
-const util = require('../../utils/util.js') 
+const util = require('../../utils/util.js')
+const config = require('../../utils/config.js'); 
 Page({
   data:{
     daily_date: '',
+    daily_act: '',
     sign_time: '',
     daily_type: '',
+    location: config.location,
+    number: config.teach_num,
     stunum: '',
     signup: false,
     total: 0,
@@ -11,66 +15,17 @@ Page({
     view: false,
     names: [],
     check: false,
-    coach: false,
-    coach_sign: false
+    type: -1
   },
   onLoad: function (options){
     var that = this;
     var date = new Date(new Date(new Date().toLocaleDateString()).getTime());
     var weekday = date.getDay();
-    if (weekday == 2 || weekday == 4) {
-      that.setData({
-        daily_date: util.formatDate(date),
-        sign_time: util.formatTime(new Date(date.getTime() - 7 * 60 * 60 * 1000))
-      });
-      if (weekday == 2) {
-        that.setData({
-          daily_type: '教学场'
-        });
-      }
-      else {
-        that.setData({
-          daily_type: '自由活动场'
-        });
-      }
-    }
-    else if (weekday == 1 || weekday == 3) {
-      that.setData({
-        daily_date: util.formatDate(new Date(date.getTime() + 24 * 60 * 60 * 1000)),
-        sign_time: util.formatTime(new Date(date.getTime() + 17 * 60 * 60 * 1000))
-      });
-      if (weekday == 1) {
-        that.setData({
-          daily_type: '教学场'
-        });
-      }
-      else {
-        that.setData({
-          daily_type: '自由活动场'
-        });
-      }
-    }
-    else if (weekday == 0) {
-      that.setData({
-        daily_date: util.formatDate(new Date(date.getTime() + 48 * 60 * 60 * 1000)),
-        sign_time: util.formatTime(new Date(date.getTime() + 41 * 60 * 60 * 1000)),
-        daily_type: '教学场'
-      });
-    }
-    else if (weekday == 5) {
-      that.setData({
-        daily_date: util.formatDate(new Date(date.getTime() + 96 * 60 * 60 * 1000)),
-        sign_time: util.formatTime(new Date(date.getTime() + 89 * 60 * 60 * 1000)),
-        daily_type: '教学场'
-      });
-    }
-    else if (weekday == 6) {
-      that.setData({
-        daily_date: util.formatDate(new Date(date.getTime() + 72 * 60 * 60 * 1000)),
-        sign_time: util.formatTime(new Date(date.getTime() + 65 * 60 * 60 * 1000)),
-        daily_type: '教学场'
-      });
-    }
+    var teach_start = config.teach_sign_time.slice(0, 5);
+    var act_start = config.act_sign_time.slice(0, 5);
+    that.setData({
+      type: options.type
+    });
     if(options.stunum == ''){
       wx.showModal({
         title: '信息获取失败',
@@ -90,9 +45,9 @@ Page({
       that.setData({
         stunum: options.stunum
       });
-      if(weekday == 2){
+      if(options.type == 0){
         wx.request({
-          url: 'https://www.jdyx.club/tjyx_backend/web/index.php?r=coach/judge&stunum=' + that.data.stunum,
+          url: config.api_url + '?r=coach/judge&stunum=' + that.data.stunum,
           method: 'GET',
           success: function (result) {
             if (result.data.state.indexOf('success') != -1) {
@@ -114,11 +69,12 @@ Page({
         });
       }
       wx.request({
-        url: 'https://www.jdyx.club/tjyx_backend/web/index.php?r=activity/order&stunum=' + that.data.stunum,
+        url: config.api_url + '?r=activity/order&stunum=' + that.data.stunum
+        + '&type=' + options.type,
         method: 'GET',
         success: function (result) {
           if (result.data.state.indexOf('success') != -1) {
-            console.log(result.data.is_sign);
+            //console.log(result.data);
             if (result.data.is_sign == 'false') {
               that.setData({
                 signup: false,
@@ -133,12 +89,104 @@ Page({
               });
             }
           }
-          else {
-            console.log(result.data);
-          }
         }
       });
     }
+    if(options.type == 0){
+      if(weekday == config.teach_weekday){
+        that.setData({
+          daily_type: config.teach_name,
+          daily_date: util.formatDate(date),
+          daily_act: config.teach_time,
+          sign_time: util.formatDate(new Date(
+            date.getTime() - config.day_time)) + ' ' + teach_start,
+          number: config.teach_num
+        });
+      }
+      else if(weekday < config.teach_weekday){
+        that.setData({
+          daily_type: config.teach_name,
+          daily_date: util.formatDate(new Date(date.getTime() + (
+            config.teach_weekday - weekday) * config.day_time)),
+          daily_act: config.teach_time,  
+          sign_time: util.formatDate(new Date(
+            date.getTime() + (config.teach_weekday - weekday - 1) 
+            * config.day_time)) + ' ' + teach_start,
+          number: config.teach_num  
+        });
+      }
+      else{
+        that.setData({
+          daily_type: config.teach_name,
+          daily_date: util.formatDate(new Date(date.getTime() + (
+            7 - weekday + config.teach_weekday) * config.day_time)),
+          daily_act: config.teach_time,
+          sign_time: util.formatDate(new Date(
+            date.getTime() + (6 - weekday + config.teach_weekday) 
+            * config.day_time)) + ' ' + teach_start,
+          number: config.teach_num  
+        });
+      }
+    }
+    else{
+      if(weekday == config.act_weekday){
+        that.setData({
+          daily_type: config.act_name,
+          daily_date: util.formatDate(date),
+          daily_act: config.act_time,
+          sign_time: util.formatDate(new Date(
+            date.getTime() - config.day_time)) + ' ' + act_start,
+          number: config.act_num  
+        });
+      }
+      else if(weekday < config.act_weekday){
+        that.setData({
+          daily_type: config.act_name,
+          daily_date: util.formatDate(new Date(date.getTime() + (
+            config.act_weekday - weekday) * config.day_time)),
+          daily_act: config.act_time,
+          sign_time: util.formatDate(new Date(date.getTime() + 
+          (config.act_weekday - weekday - 1) * config.day_time)) 
+          + ' ' + act_start,
+          number: config.act_num  
+        });
+      }
+      else{
+        that.setData({
+          daily_type: config.act_name,
+          daily_date: util.formatDate(new Date(date.getTime() + (
+            7 - weekday + config.act_weekday) * config.day_time)),
+          daily_act: config.act_time,
+          sign_time: util.formatDate(new Date(
+            date.getTime() + (6 - weekday + config.act_weekday) 
+            * config.day_time)) + ' ' + act_start,
+          number: config.act_num  
+        });
+      }
+    }
+  },
+  imageZoomWidthUtil(originalWidth,originalHeight,imageHeight){
+    let imageSize = {};
+    if(imageHeight){
+        imageSize.imageWidth = (imageHeight *originalWidth) / originalHeight;
+        imageSize.imageHeight = imageHeight;
+    }else{
+        wx.getSystemInfo({  
+            success: function (res) {  
+                imageHeight = res.windowHeight;
+                imageSize.imageWidth = (imageHeight *originalWidth) / originalHeight;
+                imageSize.imageHeight = imageHeight;
+            }  
+        });
+    }
+    return imageSize;
+  },
+  imageLoad: function (e) {
+    //获取图片的原始宽度和高度
+    let originalWidth = e.detail.width;
+    let originalHeight = e.detail.height;
+    let imageSize = this.imageZoomWidthUtil(originalWidth,originalHeight,145);
+    this.setData({imageWidth:imageSize.imageWidth,imageHeight:imageSize.imageHeight});  
   },
   pressSign: function () {
     var that = this;
@@ -157,7 +205,13 @@ Page({
       var today = date.getDay();
       var hours = date.getHours();
       var mins = date.getMinutes();
-      if (today < 1 || today > 4 || (today == 1 && hours < 17) || (today == 3 && hours < 17) || (today == 2 && hours > 20) || (today == 4 && hours > 20)) {
+      var t_start = Number(config.teach_sign_time.split(":")[0]);
+      var a_start = Number(config.act_sign_time.split(":")[0]);
+      console.log(today);
+      if (((that.data.type == 0) && ((today < (config.teach_weekday - 1) || today > config.teach_weekday)))
+      || ((that.data.type == 1) && ((today < (config.act_weekday - 1) || today > (config.act_weekday))))
+      || ((that.data.type == 0) && (today == config.teach_weekday - 1) && (hours < t_start)) || 
+      ((that.data.type == 1) && (today == config.act_weekday - 1) && (hours < a_start))) {
         wx.showModal({
           title: '提示',
           content: '未到活动报名时间',
@@ -168,13 +222,14 @@ Page({
       }
       else {
         wx.request({
-          url: 'https://www.jdyx.club/tjyx_backend/web/index.php?r=activity/add',
+          url: config.api_url + '?r=activity/add',
           method: 'POST',
           header: {
             'content-type': 'application/x-www-form-urlencoded'
           },
           data: {
             stunum: that.data.stunum,
+            type: that.data.type
           },
           success: function (result) {
             if (result.data.state.indexOf('success') != -1) {
@@ -207,8 +262,11 @@ Page({
   },
   pressDetail: function () {
     var that = this;
+    var dateTime = util.formatSDate(that.data.daily_date);
+    console.log(dateTime);
     wx.navigateTo({
-      url: '../detail/detail?date=' + that.data.daily_date,
+      url: '../detail/detail?date=' + dateTime + '&type='
+      + that.data.type,
     })
   },
   pressCancel: function () {
@@ -216,10 +274,13 @@ Page({
     var date = new Date();
     var day = date.getDay();
     var hour = date.getHours();
-    if((day == 2 || day == 4) && hour >= 18){
+    var can_cancel = null;
+    if(that.data.type == 0) can_cancel = parseInt(config.teach_time.split(':')[0]);
+    else can_cancel = parseInt(config.act_time.split(':')[0]);
+    if((day == config.teach_weekday || day == config.act_weekday) && (hour >= can_cancel)){
       wx.showModal({
         title: '提示',
-        content: '请在当天六点之前退报名',
+        content: '请在当天' + can_cancel + '点之前退报名',
         success: function (res) {
           console.log('cancel error');
         }
@@ -232,13 +293,14 @@ Page({
         success: function (res) {
           if (res.confirm) {
             wx.request({
-              url: 'https://www.jdyx.club/tjyx_backend/web/index.php?r=activity/cancel',
+              url: config.api_url + '?r=activity/cancel',
               method: 'POST',
               header: {
                 'content-type': 'application/x-www-form-urlencoded'
               },
               data: {
                 stunum: that.data.stunum,
+                type: that.data.type
               },
               success: function (result) {
                 if (result.data.state.indexOf('success') != -1) {
@@ -256,42 +318,4 @@ Page({
       });
     }
   },
-  pressCoach: function (){
-    var that = this;
-    if(that.data.coach_sign){
-      wx.showModal({
-        title: '提示',
-        content: '你已进行教练签到',
-        success: function (res) {
-          console.log('already sign as coach');
-        }
-      });
-    }
-    else{
-      wx.request({
-        url: 'https://www.jdyx.club/tjyx_backend/web/index.php?r=coach/sign',
-        method: 'POST',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        data: {
-          stunum: that.data.stunum,
-        },
-        success: function (result) {
-          if (result.data.state.indexOf('success') != -1) {
-            that.setData({
-              coach_sign: true
-            });
-            wx.showModal({
-              title: '提示',
-              content: '教练签到成功!',
-              success: function (res) {
-                console.log('sign as coach');
-              }
-            });
-          }
-        }
-      });
-    }
-  }
 })
