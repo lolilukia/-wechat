@@ -1,0 +1,17 @@
+<view class="container">
+    <view class="table">
+        <view class="tr">
+          <view class="th name">姓名</view>
+          <view class="th gen">性别</view>
+          <view class="th mname">队友姓名</view>
+          <view class="th mgen">队友性别</view>
+        </view>
+        <view class="tr" wx:for="{{sps.data}}" wx:key="{{sps.data}}" 
+        wx:for-item="item">
+          <view class="td name">{{item.name}}</view>
+          <view class="td gen">{{item.gender}}</view>
+          <view class="td mname">{{item.mname}}</view>
+          <view class="td mgen">{{item.mgender}}</view>
+        </view>
+    </view>
+</view>

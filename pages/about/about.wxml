@@ -1,0 +1,15 @@
+<view class="aboutView">
+  <view class="intro">
+    <view class="aboutus">
+      <text class="assText">{{assText}}</text>
+      <text class="detailText">{{detailText}}</text>
+    </view>
+    <view class="aboutdev">
+      <text class="assText">{{devText}}</text>
+      <text class="detailText">{{contactText}}</text>
+    </view>
+  </view>
+  <view class="backbtn">
+    <button class="backBtn" bindtap="jumpBack">{{btnText}}</button>
+  </view>
+</view>

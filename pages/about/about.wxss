@@ -1,0 +1,32 @@
+.aboutView{
+  align-items: center;
+  justify-content: center;
+}
+.intro{
+  width: 100%;
+  margin: 20px 0 20px 0;
+}
+.aboutus{
+  width: 80%;
+  margin: 0 auto;
+}
+.assText{
+  font-size: 35rpx;
+  font-weight: 400;
+}
+.detailText{
+  font-size: 30rpx;
+  color: #666;
+}
+.backBtn{
+  background-color: #62b900;
+  color: #fff;
+  margin-top: 10px;
+  width: 80%;
+  margin: 0 auto;
+}
+.aboutdev{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
